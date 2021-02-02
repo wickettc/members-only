@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
 const { body, validationResult } = require('express-validator');
+const passport = require('../passport/setup');
 const User = require('../models/user');
 
 exports.sign_up_get = (req, res) => {
@@ -12,12 +12,14 @@ exports.sign_up_post = [
         .isLength({ min: 1 })
         .withMessage('First name is required'),
     body('lastname').isLength({ min: 1 }).withMessage('Last name is required'),
-    body('email').custom((value) =>
-        User.findOne({ email: value })
+    body('username').custom((value) =>
+        User.findOne({ username: value })
             .exec()
             .then((user) => {
                 if (user) {
-                    return Promise.reject(new Error('Email is already in use'));
+                    return Promise.reject(
+                        new Error('username is already in use')
+                    );
                 }
             })
     ),
@@ -41,7 +43,7 @@ exports.sign_up_post = [
             new User({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
-                email: req.body.email,
+                username: req.body.username,
                 password: hashedPW,
             }).save((err) => {
                 if (err) return next(err);
@@ -61,3 +63,8 @@ exports.log_in_post =
         successRedirect: '/',
         failureRedirect: '/users/log-in',
     }));
+
+exports.log_out = (req, res) => {
+    req.logout();
+    res.render('log_out');
+};
