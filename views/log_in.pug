@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Log In to Member's Only
+
+  form(method="POST")
+    label(for='email') Email: 
+      input(type='email' name='email')
+    label(for='password') Password: 
+      input(type='text' name='password')
+    button Log In

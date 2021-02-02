@@ -8,7 +8,9 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
+const User = require('./models/user');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -25,6 +27,43 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(
+    session({ secret: 'members-only', resave: false, saveUninitialized: true })
+);
+
+passport.use(
+    {
+        usernameField: 'email',
+        passwordField: 'password',
+    },
+    new LocalStrategy((email, password, done) => {
+        User.findOne({ email }, (err, user) => {
+            if (err) return done(err);
+            if (!user) return done(null, false, { msg: 'Incorrect Email' });
+            bcrypt.compare(password, user.password, (error, res) => {
+                if (res) {
+                    // passwords match
+                    return done(null, user);
+                }
+                // passwords do not match
+                return done(null, false, { msg: 'Incorrect Password' });
+            });
+        });
+    })
+);
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+        done(err, user);
+    });
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
