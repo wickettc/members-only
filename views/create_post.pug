@@ -4,7 +4,8 @@ block content
   h1 Log In to Member's Only
 
   form(method="POST")
-    <!-- figure out how to get cur user mongooseID-->
-    label(for='body') Message: 
-      textarea(name='username')
-    button Log In
+    input(type='hidden' name='username' value=currentUser.id)
+    input(type='hidden' name='post_time' value=`${new Date()}`)
+    label(for='message') Message: 
+      textarea(name='message')
+    button Create Post
