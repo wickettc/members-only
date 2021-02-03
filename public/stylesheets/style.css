@@ -42,15 +42,39 @@ nav {
 div a {
     color: red;
     text-decoration: none;
+    transition: all 0.4s ease;
 }
 
 div a:hover {
     color: black;
+    font-size: 1.5rem;
 }
 
 form {
     display: flex;
     flex-direction: column;
+}
+
+form button {
+    margin-top: 10px;
+}
+
+input,
+label {
+    display: block;
+}
+
+label {
+    text-align: center;
+}
+
+input {
+    transition: all 0.4s ease;
+    padding: 12px 20px;
+}
+
+input:hover {
+    background-color: rgba(245, 20, 20, 0.342);
 }
 
 .post {
@@ -62,6 +86,11 @@ form {
     padding: 25px;
     padding-top: 10px;
     border-radius: 15%;
+    transition: all 0.4s ease-in-out;
+}
+
+.post:hover {
+    transform: scale(1.2);
 }
 
 .post-title {
