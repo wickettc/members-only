@@ -3,20 +3,24 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700&display=swap" rel="stylesheet")
   body
 
     nav
-      ul
-        li
-          a(href='/') Member's Home
+      .nav-home
+        a(href='/') Member's Only
+      .nav-bar
         if currentUser
-          li 
-            a(href='/users/log-out') Log Out
-          li
+          div Welcome #{currentUser.firstname}
+          div
             a(href='/create-post') Create Post
+          div 
+            a(href='/users/log-out') Log Out
         else
-          li 
+          div 
             a(href='/users/log-in') Log In
-          li
+          div
             a(href='/users/sign-up') Sign Up
-    block content
+    .page-container
+      block content

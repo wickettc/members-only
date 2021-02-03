@@ -11,7 +11,6 @@ exports.sign_up_post = [
     body('firstname')
         .isLength({ min: 1 })
         .withMessage('First name is required'),
-    body('lastname').isLength({ min: 1 }).withMessage('Last name is required'),
     body('username').custom((value) =>
         User.findOne({ username: value })
             .exec()
@@ -42,7 +41,6 @@ exports.sign_up_post = [
         bcrypt.hash(req.body.password, 10, (error, hashedPW) => {
             new User({
                 firstname: req.body.firstname,
-                lastname: req.body.lastname,
                 username: req.body.username,
                 password: hashedPW,
             }).save((err) => {

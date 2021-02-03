@@ -3,12 +3,13 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700&display=swap" rel="stylesheet")
   body
     nav
-      ul
-        li
-            a(href='/') Member's Home
-        li
-            a(href='/users/log-in') Log Back In
+      .nav-home
+        a(href='/') Member's Only
+      .nav-bar
+        a(href='/users/log-in') Log Back In
             
     h1 Thanks for visiting Member's Only, come back soon!

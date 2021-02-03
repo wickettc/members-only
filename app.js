@@ -29,7 +29,11 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(
-    session({ secret: 'members-only', resave: false, saveUninitialized: true })
+    session({
+        secret: process.env.SECRETS,
+        resave: false,
+        saveUninitialized: true,
+    })
 );
 app.use(passport.initialize());
 app.use(passport.session());

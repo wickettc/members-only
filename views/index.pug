@@ -5,4 +5,21 @@ block content
   if currentUser
     h1 Welcome back #{currentUser.firstname}
   else 
-    h1 Welcome to members only, please log in or sign up
+    h1 Welcome to Members Only!
+    h2 Please 
+      a(href='/users/log-in') log in 
+      |or 
+      a(href='/users/sign-up') sign up
+
+  if results.posts
+  each post in results.posts
+    .post
+      h3= post.title
+      div= post.message
+      div= post.post_time.toLocaleString('en-US')
+      if currentUser
+        each user in results.users
+          if(user.id == post.username)
+            div= user.firstname
+      else 
+        div Annonymous
