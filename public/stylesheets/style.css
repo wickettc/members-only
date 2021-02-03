@@ -2,6 +2,7 @@ body {
     font: 18px 'Big Shoulders Display', cursive;
     padding: 0;
     margin: 0;
+    height: 100vh;
 }
 
 nav {
@@ -30,6 +31,14 @@ nav {
     padding-left: 10px;
 }
 
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(82, 82, 82, 0.767);
+    height: 100%;
+}
+
 div a {
     color: red;
     text-decoration: none;
@@ -42,4 +51,36 @@ div a:hover {
 form {
     display: flex;
     flex-direction: column;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(151, 148, 148, 0.644);
+    margin-bottom: 10px;
+    padding: 25px;
+    padding-top: 10px;
+    border-radius: 15%;
+}
+
+.post-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.post-message {
+    font-size: 1.2rem;
+    padding: 25px 0 25px 0;
+    width: 95%;
+    text-align: right;
+    background-color: rgba(168, 165, 165, 0.644);
+    border-radius: 10%;
+    margin-bottom: 5px;
+}
+
+.post-info {
+    font-style: italic;
 }

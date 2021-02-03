@@ -5,7 +5,7 @@ block content
 
   form(method="POST")
     input(type='hidden' name='username' value=currentUser.id)
-    input(type='hidden' name='post_time' value=`${new Date()}`)
+    //- input(type='hidden' name='post_time' value=`${new Date()}`)
     label(for='title') Title:
       input(type='text' name='title' required='true')
     label(for='message') Message: 

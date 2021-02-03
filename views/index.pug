@@ -14,12 +14,12 @@ block content
   if results.posts
   each post in results.posts
     .post
-      h3= post.title
-      div= post.message
-      div= post.post_time.toLocaleString('en-US')
+      h3(class='post-title')= post.title
+      div(class='post-message')= post.message
+      div(class='post-info') Created #{post.post_time}
       if currentUser
         each user in results.users
           if(user.id == post.username)
-            div= user.firstname
+            div(class='post-info') By #{user.firstname}
       else 
-        div Annonymous
+        div(class='post-info') By Annonymous
