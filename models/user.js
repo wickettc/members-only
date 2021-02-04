@@ -6,8 +6,7 @@ const UserSchema = new Schema({
     firstname: { type: String, required: true, maxlength: 50 },
     username: { type: String, required: true, maxlength: 50 },
     password: { type: String, required: true },
+    admin: { type: Boolean, required: true },
 });
-
-UserSchema.virtual('fullName').get(() => this.first_name + this.last_name);
 
 module.exports = mongoose.model('User', UserSchema);

@@ -34,6 +34,7 @@ exports.sign_up_post = [
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
+            console.log(errors.array());
             res.render('sign_up', { errors: errors.array() });
             return;
         }
@@ -43,6 +44,7 @@ exports.sign_up_post = [
                 firstname: req.body.firstname,
                 username: req.body.username,
                 password: hashedPW,
+                admin: req.body.isadmin,
             }).save((err) => {
                 if (err) return next(err);
                 res.redirect('/');
@@ -52,7 +54,8 @@ exports.sign_up_post = [
 ];
 
 exports.log_in_get = (req, res) => {
-    res.render('log_in');
+    console.log(req.flash());
+    res.render('log_in', { message: req.flash('message') });
 };
 
 exports.log_in_post =
@@ -60,6 +63,7 @@ exports.log_in_post =
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/users/log-in',
+        failureFlash: true,
     }));
 
 exports.log_out = (req, res) => {

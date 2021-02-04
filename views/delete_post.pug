@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+    h1= title
+
+    form(method='POST' class='delete-form')
+        input(type='hidden' name='deleteid' value=post.id)
+        button(type='submit') Yes
+        a(href='/')
+            button(type='button') No

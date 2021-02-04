@@ -9,10 +9,16 @@ html
 
     nav
       .nav-home
-        a(href='/') Member's Only
+        if currentUser
+          a(href='/') Members Only
+            if currentUser.admin
+              | -Admin
+        else
+          a(href='/') Members Only
       .nav-bar
         if currentUser
-          div Welcome #{currentUser.firstname}
+          div(class='welcome-nav')
+            a(href='/become-admin' id='secret-admin') Welcome #{currentUser.firstname}
           div
             a(href='/create-post') Create Post
           div 

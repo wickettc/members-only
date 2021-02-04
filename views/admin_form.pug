@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  if currentUser.admin
+    h1 You already are an Admin!
+    a(href='/') Back to Home
+
+  else 
+
+    h1 Become an Admin Member!
+
+        form(method="POST")
+            input(type='hidden' name='username' value=currentUser.id)
+            label(for='password') Enter the Admin Password: 
+            input(type='text' name='password')
+            button Level Up!

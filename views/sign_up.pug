@@ -6,17 +6,16 @@ block content
         form(method="POST")
             label(for='firstname') First Name:
                 input(type='text' name='firstname' required='true')
-            label(for='lastname') Last Name:
-                input(type='text' name='lastname' required='true')
             label(for='username') Username:
                 input(type='text' name='username' required='true')
             label(for='password') Password:
                 input(type='text' name='password' required='true')
             label(for='passwordconfirm') Confirm Password:
                 input(type='text' name='passwordconfirm' required='true')
+            input(type='hidden' name='isadmin' value='false')
+            if errors
+                ul(class='errors')
+                    each error in errors
+                        li= error.msg 
             button Sign Up
         
-        if errors
-            ul
-                each error in errors
-                    li= error.msg 

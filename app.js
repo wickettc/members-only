@@ -5,13 +5,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
+const flash = require('connect-flash');
 const mongoose = require('mongoose');
-// const bcrypt = require('bcryptjs');
 const passport = require('./passport/setup');
 
-// const User = require('./models/user');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -37,6 +34,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next();
