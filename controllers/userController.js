@@ -17,7 +17,7 @@ exports.sign_up_post = [
             .then((user) => {
                 if (user) {
                     return Promise.reject(
-                        new Error('username is already in use')
+                        new Error('Username is already in use')
                     );
                 }
             })
@@ -34,7 +34,6 @@ exports.sign_up_post = [
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            console.log(errors.array());
             res.render('sign_up', { errors: errors.array() });
             return;
         }
@@ -54,8 +53,7 @@ exports.sign_up_post = [
 ];
 
 exports.log_in_get = (req, res) => {
-    console.log(req.flash());
-    res.render('log_in', { message: req.flash('message') });
+    res.render('log_in', { errors: req.flash().error });
 };
 
 exports.log_in_post =
@@ -64,6 +62,7 @@ exports.log_in_post =
         successRedirect: '/',
         failureRedirect: '/users/log-in',
         failureFlash: true,
+        passReqToCallback: true,
     }));
 
 exports.log_out = (req, res) => {

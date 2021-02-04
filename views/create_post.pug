@@ -1,12 +1,12 @@
 extends layout
 
 block content
-  h1 Log In to Member's Only
+  h1 Create a Post!
 
   form(method="POST")
     input(type='hidden' name='username' value=currentUser.id)
     label(for='title') Title:
       input(type='text' name='title' required='true')
     label(for='message') Message: 
-      textarea(name='message' required='true')
+      textarea(name='message' required='true' maxlength='200' cols='35' rows='7')
     button Create Post

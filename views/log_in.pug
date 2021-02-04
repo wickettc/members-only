@@ -4,12 +4,10 @@ block content
   h1 Log In to Member's Only
 
   form(method="POST")
-    label(for='username') Username: 
+    label(for='username') Email: 
       input(type='text' name='username')
     label(for='password') Password: 
       input(type='text' name='password')
+    if errors
+      div(class='errors')= errors
     button Log In
-
-
-  if message
-    div= message.error
