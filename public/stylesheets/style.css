@@ -216,6 +216,13 @@ body::-webkit-scrollbar-thumb {
     background-color: rgba(196, 177, 72, 0.89);
 }
 
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    font-style: italic;
+}
+
 @media only screen and (min-width: 1300px) {
     .post {
         width: 60%;
