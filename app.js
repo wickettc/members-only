@@ -7,6 +7,8 @@ const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
+const compression = require('compression');
+const helmet = require('helmet');
 const passport = require('./passport/setup');
 
 const indexRouter = require('./routes/index');
@@ -23,6 +25,8 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(helmet());
+app.use(compression()); // compress all routes
 app.use(logger('dev'));
 app.use(express.json());
 app.use(
