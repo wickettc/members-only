@@ -14,7 +14,8 @@ const passport = require('./passport/setup');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-const mongoDB = `mongodb+srv://admin:${process.env.MONGODB_PW}@cluster0.iecsv.mongodb.net/members-only?retryWrites=true&w=majority`;
+const devDbUrl = `mongodb+srv://admin:${process.env.MONGODB_PW}@cluster0.iecsv.mongodb.net/members-only?retryWrites=true&w=majority`;
+const mongoDB = process.env.MONGODB_URI || devDbUrl;
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongo connection error'));
